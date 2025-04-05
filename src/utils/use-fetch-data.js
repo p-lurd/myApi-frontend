@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 function useFetchData(endpoint) {
-  const [data, setData] = useState(null);
+  const [groupedData, setGroupedData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -25,7 +25,8 @@ function useFetchData(endpoint) {
         }
 
         const result = await response.json();
-        setData(result);
+        // console.log({result})
+        setGroupedData(result);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -36,7 +37,7 @@ function useFetchData(endpoint) {
     fetchData();
   }, [endpoint]);
 
-  return { data, loading, error };
+  return { groupedData, loading, error };
 }
 
 export default useFetchData;
