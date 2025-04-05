@@ -29,7 +29,7 @@ const Mainbody = () => {
       <div className="font-primary flex flex-col flex-auto w-5/7 ">
         <div className="flex items-start space-x-3 py-3">
           <Link
-            to={"/"}
+            to={"#"}
             className={`${
               activeLink === "current"
                 ? "font-medium underline underline-offset-6"
@@ -40,7 +40,7 @@ const Mainbody = () => {
             Current Status
           </Link>
           <Link
-            to={"/"}
+            to={"#"}
             className={`${
               activeLink === "history"
                 ? "font-medium underline underline-offset-6"
@@ -56,6 +56,12 @@ const Mainbody = () => {
             <span className="font-medium">API Status Dashboard</span>
             <span className="text-sm font-light">{today}</span>
           </div>
+          {
+          !error && groupedData.length===0 &&
+            <div className="flex flex-col px-3 py-6 bg-secondary rounded-lg items-center text-amber-500">
+              No data to display right now, please reload
+            </div>
+            }
           {error ? (
             <div className="flex flex-col px-3 py-6 bg-secondary rounded-lg items-center text-red-800">
               There is a server error, please reload
@@ -135,10 +141,12 @@ const Mainbody = () => {
                   );
                 })}
               </div>
+              <a className="text-lg font-medium pb-5">more details:</a>
             </>
           )}
         </div>
       </div>
+      
     </div>
   );
 };

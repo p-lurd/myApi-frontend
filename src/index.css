@@ -4,6 +4,7 @@
 @theme{
   --color-primary: #8DB2E3;
   --color-secondary: #F2F2F2;
+  --color-tertiary: #333333;
   --font-primary: "Hind Madurai";
 }
 /* :root{
