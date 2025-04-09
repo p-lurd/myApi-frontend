@@ -13,9 +13,9 @@ Backend is @ [https://github.com/p-lurd/myApi-backend](https://github.com/p-lurd
 # Install dependecies
 $ npm install
 
-# development
+# runn code in development
 $ npm run dev
 
-# To builf
+# To build
 $ npm run build
 ```
