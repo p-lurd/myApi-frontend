@@ -116,7 +116,7 @@ const Mainbody = () => {
                       key={group._id}
                       className="api-group border-1 rounded-lg border-gray-400 px-3 mb-7"
                     >
-                      <div className="text-sm flex justify-between">
+                      <div className="text-sm flex justify-between  mt-4 mb-3">
                         <div className="flex flex-col">
                           <span className="text-sm font-medium">
                             {group.responses[0].apiName}

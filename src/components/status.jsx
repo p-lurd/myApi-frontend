@@ -30,22 +30,47 @@ const StatusBoxes = ({ group }) => {
   };
 
   return (
-    <div className="flex justify-center px-7 py-4 w-full">
-        {/* <div className="flex gap-x-2 mx-6 w-full max-w-4xl border-2 border-amber-800 justify-center  px-3.5"> */}
-      {statusBoxes.map((item, i) => (
+    // <div className="flex justify-center px-7 py-4 w-3/5">
+    //     {/* <div className="flex gap-x-2 mx-6 w-full max-w-4xl border-2 border-amber-800 justify-center  px-3.5"> */}
+    //   {statusBoxes.map((item, i) => (
         
-        <div
-          key={i}
-          title={
-            item
-              ? `Success: ${item.success}, Time: ${item.responseTime}ms`
-              : "No response"
-          }
-          className={`w-5 h-8 rounded-lg ${getStatusColor(item)} mr-1.5`}
-        />
-      ))}
-    </div>
+    //     <div
+    //       key={i}
+    //       title={
+    //         item
+    //           ? `Success: ${item.success}, Time: ${item.responseTime}ms`
+    //           : "No response"
+    //       }
+    //       className={`h-6 rounded-lg ${getStatusColor(item)}`}
+    //     style={{ width: "calc(3% - 2px)", height: "calc(width + 5px)"}}
+    //     />
+    //   ))}
     // </div>
+    // </div>
+    <div className="flex justify-center px-7 py-4 w-full">
+  <div 
+    className="flex w-full max-w-6xl min-w-[300px] justify-center" 
+    style={{ 
+      gap: "clamp(2px, 1vw, 10px)"  // Gap that grows from 2px to 10px
+    }}
+  >
+    {statusBoxes.map((item, i) => (
+      <div
+        key={i}
+        title={
+          item
+            ? `Success: ${item.success}, Time: ${item.responseTime}ms`
+            : "No response"
+        }
+        className={`rounded-2xl ${getStatusColor(item)}`}
+        style={{ 
+          width: "clamp(6px, 1.3vw, 20px)",  // Width that grows from 6px to 16px
+          height: "clamp(7px, 7vh, 40px)"
+        }}
+      />
+    ))}
+  </div>
+</div>
   );
 };
 
