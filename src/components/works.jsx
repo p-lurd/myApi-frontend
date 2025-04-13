@@ -29,7 +29,7 @@ const Works = () => {
         <div className="py-16 px-4 md:px-8"
         style={{ backgroundImage: `url(${bg2Url})` }}
         >
-          <h2 className="text-white text-center text-3xl md:text-4xl font-bold mb-12">How it Works</h2>
+          <h2 className="text-white text-center text-3xl md:text-4xl font-semibold mb-12">How it Works</h2>
           
           <div className="flex flex-col md:flex-row justify-evenly items-center max-w-6xl mx-auto">
             {steps.map((step, index) => (

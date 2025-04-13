@@ -42,7 +42,7 @@ const Features = () => {
     ]
     return ( 
         <div className="my-20">
-            <h1 className="text-white font-semibold text-3xl mb-25 text-center">Key Features</h1>
+            <h1 className="text-white font-semibold text-4xl mb-25 text-center">Key Features</h1>
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
                 {features.map((feature, index)=>(
                     <FeatureCard
