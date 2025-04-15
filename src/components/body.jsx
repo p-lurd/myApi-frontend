@@ -26,7 +26,7 @@ const Mainbody = () => {
 
   return (
     <div className="font-primary flex flex-col items-center mt-8">
-      <div className="font-primary flex flex-col flex-auto w-5/7 ">
+      <div className="font-primary flex flex-col flex-auto w-full px-0.5 md:w-5/7 ">
         <div className="flex items-start space-x-3 py-3">
           <Link
             to={"#"}
@@ -82,7 +82,7 @@ const Mainbody = () => {
                 </div>
               )}
 
-              {/* This is where to map */}
+
               <div className="flex flex-col px-3 bg-secondary rounded-lg">
                 <div className="flex justify-between pb-8 pt-2 text-sm">
                   <span className=" font-medium">

@@ -5,11 +5,11 @@ import infographics from "../assets/infographics.svg"
 
 const FeatureCard = ({ title, description, icon }) => {
     return (
-      <div className="bg-black rounded-lg overflow-hidden">
-        <div className="bg-gray-900 p-8 flex items-center justify-center h-48">
+      <div className="bg-quad rounded-lg overflow-hidden p-5">
+        <div className="bg-gray-900 p-8 flex items-center justify-center h-38 md:h-48">
           <img src={icon} alt="" className="max-h-32 w-auto" />
         </div>
-        <div className="p-6">
+        <div className="py-3 md:py-6">
           <h3 className="text-white text-lg font-semibold mb-2">{title}</h3>
           <p className="text-gray-300">{description}</p>
         </div>
@@ -41,7 +41,8 @@ const Features = () => {
         }
     ]
     return ( 
-        <div className="my-20">
+      <div className="w-full flex flex-col items-center md:items-start px-3 md:px-0">
+        <div className="my-20 w-full">
             <h1 className="text-white font-semibold text-4xl mb-25 text-center">Key Features</h1>
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
                 {features.map((feature, index)=>(
@@ -53,6 +54,7 @@ const Features = () => {
                   />
                 ))}
             </div>
+        </div>
         </div>
      );
 }

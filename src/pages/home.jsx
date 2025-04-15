@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <div 
-      className="bg-repeat w-full h-full px-10 font-primary pb-20 text-secondary"
+      className="bg-repeat w-full h-full font-primary pb-20 text-secondary"
       style={{ backgroundImage: `url(${bgUrl})` }}
       >
         <Header></Header>

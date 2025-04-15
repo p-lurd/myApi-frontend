@@ -28,11 +28,11 @@ const FAQ = () => {
     ];
 
     return (
-        <div className="mt-10 px-4 md:px-16 flex flex-col items-center">
-            <h1 className="text-center font-semibold text-3xl mb-6">FAQs</h1>
-            <div className="space-y-4 flex flex-col items-center w-4/6">
+        <div className="mt-10 md:px-16 flex flex-col items-center">
+            <h1 className="text-center font-semibold text-3xl mb-25 md:mb-6">FAQs</h1>
+            <div className="space-y-4 flex flex-col items-center w-full px-4 md:w-4/6">
                 {faqs.map((faq, index) => (
-                    <div key={index} className="bg-gray-900 px-5 py-8 rounded-md w-full">
+                    <div key={index} className="bg-gray-900 px-5 py-6 text-sm md:py-8 rounded-md w-full">
                         <div
                             className="flex justify-between items-center cursor-pointer"
                             onClick={() => toggleDetail(index)}
@@ -47,7 +47,7 @@ const FAQ = () => {
                             />
                         </div>
                         {openIndex === index && (
-                            <p className="mt-2 text-gray-600">{faq.answer}</p>
+                            <p className="mt-2 text-gray-400">{faq.answer}</p>
                         )}
                     </div>
                 ))}

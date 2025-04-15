@@ -35,11 +35,11 @@ const Works = () => {
             {steps.map((step, index) => (
               <React.Fragment key={step.number}>
                 <div className="flex flex-col items-center mb-8 md:mb-0">
-                  <div className="bg-white text-gray-900 w-30 h-30 rounded-full flex items-center justify-center text-3xl font-semibold mb-4">
+                  <div className="bg-white text-gray-900 w-22 h-22 md:w-30 md:h-30 rounded-full flex items-center justify-center md:text-3xl font-semibold mb-4">
                     {step.number}
                   </div>
-                  <h3 className="text-white text-xl font-medium mb-2">{step.title}</h3>
-                  <p className="text-white text-center max-w-xs text-sm">
+                  <h3 className="text-white text-sm md:text-xl font-light md:font-medium mb-2">{step.title}</h3>
+                  <p className="text-white text-center max-w-xs font-extralight text-xs md:text-sm md:font-medium">
                     {step.descriptionParts[0]}
                     <br />
                     {step.descriptionParts[1]}
