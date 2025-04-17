@@ -25,7 +25,7 @@ const Mainbody = () => {
   };
 
   return (
-    <div className="font-primary flex flex-col items-center mt-8">
+    <div className="font-primary flex flex-col items-center mt-8 px-4">
       <div className="font-primary flex flex-col flex-auto w-full px-0.5 md:w-5/7 ">
         <div className="flex items-start space-x-3 py-3">
           <Link
@@ -84,7 +84,7 @@ const Mainbody = () => {
 
 
               <div className="flex flex-col px-3 bg-secondary rounded-lg">
-                <div className="flex justify-between pb-8 pt-2 text-sm">
+                <div className="flex justify-between pb-8 pt-2 text-sm flex-col md:flex-row">
                   <span className=" font-medium">
                     Status Timeline : 30 days
                   </span>
@@ -141,7 +141,7 @@ const Mainbody = () => {
                   );
                 })}
               </div>
-              <a className="text-lg font-medium pb-5">more details:</a>
+              <a className="text-lg font-medium pb-5 pl-3">More details:</a>
             </>
           )}
         </div>

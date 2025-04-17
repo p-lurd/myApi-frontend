@@ -17,8 +17,11 @@ const StatusBoxes = ({ group }) => {
 
   }, [data, group]);
   const TOTAL_BOXES = 30;
-  // Build a fixed-size array (30), map responses into it, and pad the rest with null
-  const statusBoxes = Array.from({ length: TOTAL_BOXES }).map((_, i) => data[i] || null);
+  // Build a fixed-size array (30), with nulls first followed by responses
+const statusBoxes = Array.from({ length: TOTAL_BOXES }).map((_, i) => {
+  const dataIndex = i - (TOTAL_BOXES - data.length);
+  return dataIndex >= 0 ? data[dataIndex] : null;
+});
   
   // Get color based on status
   const getStatusColor = (item) => {
@@ -30,23 +33,6 @@ const StatusBoxes = ({ group }) => {
   };
 
   return (
-    // <div className="flex justify-center px-7 py-4 w-3/5">
-    //     {/* <div className="flex gap-x-2 mx-6 w-full max-w-4xl border-2 border-amber-800 justify-center  px-3.5"> */}
-    //   {statusBoxes.map((item, i) => (
-        
-    //     <div
-    //       key={i}
-    //       title={
-    //         item
-    //           ? `Success: ${item.success}, Time: ${item.responseTime}ms`
-    //           : "No response"
-    //       }
-    //       className={`h-6 rounded-lg ${getStatusColor(item)}`}
-    //     style={{ width: "calc(3% - 2px)", height: "calc(width + 5px)"}}
-    //     />
-    //   ))}
-    // </div>
-    // </div>
     <div className="flex justify-center px-7 py-4 w-full">
   <div 
     className="flex w-full max-w-6xl min-w-[300px] justify-center" 
@@ -62,10 +48,14 @@ const StatusBoxes = ({ group }) => {
             ? `Success: ${item.success}, Time: ${item.responseTime}ms`
             : "No response"
         }
-        className={`rounded-2xl ${getStatusColor(item)}`}
+        className={`
+          rounded-2xl 
+          ${getStatusColor(item)}
+          h-[15px] sm:h-[16px] md:h-[24px] lg:h-[32px] xl:h-[40px]
+        `}
         style={{ 
           width: "clamp(6px, 1.3vw, 20px)",  // Width that grows from 6px to 16px
-          height: "clamp(7px, 7vh, 40px)"
+          // height: "clamp(7px, 7vh, 40px)"
         }}
       />
     ))}
