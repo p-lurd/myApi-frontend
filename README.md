@@ -1,4 +1,4 @@
-# React + Vite
+# weUp
 
 ## Description
 
@@ -19,3 +19,5 @@ $ npm run dev
 # To build
 $ npm run build
 ```
+## Contact me
+- Twitter - [@p_lurd](https://x.com/p_lurd)
