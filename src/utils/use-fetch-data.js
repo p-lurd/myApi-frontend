@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 function useFetchData(endpoint) {
   const [groupedData, setGroupedData] = useState([]);
@@ -9,14 +9,15 @@ function useFetchData(endpoint) {
     const fetchData = async () => {
       try {
         const apiUrl = import.meta.env.VITE_API_URL;
-        const response = await fetch(`${apiUrl}/${endpoint}`, {
-          method: 'GET',
+        const fetchUrl = `${apiUrl}/api/${endpoint}`;
+        const response = await fetch(fetchUrl, {
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             // These headers prevent caching
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache',
-            'Expires': '0'
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            Pragma: "no-cache",
+            Expires: "0",
           },
         });
 
@@ -25,7 +26,7 @@ function useFetchData(endpoint) {
         }
 
         const result = await response.json();
-        // console.log({result})
+        
         setGroupedData(result);
       } catch (err) {
         setError(err.message);

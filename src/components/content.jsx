@@ -6,7 +6,7 @@ const Content = () => {
     const navigate = useNavigate();
 
   const handleRequestDemo = () => {
-    navigate("/status/67c0fc8c9e176ef282a37af1");
+    navigate("/status/6802fef91e3a8f59fb6338f7");
   };
   return (
     <div className="content flex flex-col items-center mt-8 px-8 md:px-10">
