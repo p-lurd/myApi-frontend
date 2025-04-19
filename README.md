@@ -19,3 +19,5 @@ $ npm run dev
 # To build
 $ npm run build
 ```
+## Reach me on
+- Twitter - [@p_lurd](https://x.com/p_lurd)
