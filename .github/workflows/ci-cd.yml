@@ -21,10 +21,10 @@ jobs:
       - name: Build and push Frontend Docker image
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: myapi-frontend
+          image: ${{ secrets.DOCKERHUB_USERNAME }}/my-api
           dockerfile: Dockerfile
           registry: docker.io
-          tags: latest, ${{ github.sha }}
+          tags: myapi-frontend-latest, myapi-frontend-${{ github.sha }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
   deploy-to-gcp:
