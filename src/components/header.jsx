@@ -1,4 +1,4 @@
-import weup from "../assets/weUp.svg";
+import weup from "../assets/we-up.svg";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
 const Header = () => {
