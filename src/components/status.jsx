@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+
 const StatusBoxes = ({ group }) => {
   const [data, setData] = useState([]);
   console.log("Received group prop:", group);

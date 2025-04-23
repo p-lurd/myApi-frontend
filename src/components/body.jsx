@@ -5,6 +5,7 @@ import warning from "../assets/warning.svg";
 import useFetchData from "../utils/use-fetch-data";
 import StatusBoxes from "../components/status";
 import { getStatusInfo } from "../utils/status-info-gen";
+import {toast} from "react-toastify"
 
 const Mainbody = () => {
   const [activeLink, setActiveLink] = useState("current");
@@ -14,9 +15,18 @@ const Mainbody = () => {
 
   const apiUrl = import.meta.env.VITE_API_URL;
   const { groupedData, loading, error } = useFetchData(id);
-  // useEffect(()=>{
-  //   console.log(groupedData);
-  // },[groupedData])
+  useEffect(()=>{
+    console.log(groupedData);
+    // if(!error && groupedData.length===0){
+    //   toast.error("No data to display right now, please reload")
+    // }
+    // if(error){
+    //   toast.error("There is a server error, please reload")
+    //   }
+    // if(loading){
+    //   toast.loading("Loading...",)
+    // }
+  },[groupedData, error, loading])
   const getSystemStatus = (lastResponse) => {
     if (!lastResponse) return "No Data";
     if (!lastResponse.success) return "Major Outage";
@@ -56,16 +66,9 @@ const Mainbody = () => {
             <span className="font-medium">API Status Dashboard</span>
             <span className="text-sm font-light">{today}</span>
           </div>
-          {
-          !error && groupedData.length===0 &&
-            <div className="flex flex-col px-3 py-6 bg-secondary rounded-lg items-center text-amber-500">
-              No data to display right now, please reload
-            </div>
-            }
+          
           {error ? (
-            <div className="flex flex-col px-3 py-6 bg-secondary rounded-lg items-center text-red-800">
-              There is a server error, please reload
-            </div>
+            <></>
           ) : (
             <>
               {!loading ? (

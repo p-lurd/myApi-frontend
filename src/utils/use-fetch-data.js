@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 function useFetchData(endpoint) {
   const [groupedData, setGroupedData] = useState([]);
@@ -22,6 +23,7 @@ function useFetchData(endpoint) {
         });
 
         if (!response.ok) {
+          toast.error("There is a server error, please reload")
           throw new Error(`Error: ${response.status}`);
         }
 
@@ -29,6 +31,7 @@ function useFetchData(endpoint) {
         
         setGroupedData(result);
       } catch (err) {
+        toast.error(err.message)
         setError(err.message);
       } finally {
         setLoading(false);
