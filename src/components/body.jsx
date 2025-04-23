@@ -16,13 +16,6 @@ const Mainbody = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const { groupedData, loading, error } = useFetchData(id);
   useEffect(()=>{
-    console.log(groupedData);
-    // if(!error && groupedData.length===0){
-    //   toast.error("No data to display right now, please reload")
-    // }
-    // if(error){
-    //   toast.error("There is a server error, please reload")
-    //   }
     // if(loading){
     //   toast.loading("Loading...",)
     // }
