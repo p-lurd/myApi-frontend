@@ -3,11 +3,11 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();
-
+  console.log({location})
   const navigate = useNavigate();
 
   const getMainTextColor = () => {
-    if (location.pathname === "/") {
+    if (location.pathname === "/" || location.pathname === "/signup") {
       return { text: "text-white", bgColor: "" };
     } else {
       return { text: "text-black", bgColor: "bg-gray-200" };
@@ -26,7 +26,7 @@ const Header = () => {
     `}
     >
       <div className="my-6">
-        <img src={weup} alt="logo" onClick={() => navigate("/")} />
+        <img src={weup} alt="logo" onClick={() => navigate("/")} className="hover:cursor-pointer"/>
       </div>
 
       <nav className={`hidden md:flex justify-evenly flex-1 my-7 sm:pl-[8%]`}>
@@ -38,15 +38,16 @@ const Header = () => {
           <Link to={"#"}>Get Help</Link>
         </div>
       </nav>
-      <div className=" bg-color-blue-500 pt-6 md:mr-6">
-        <button className=" text-sm md:text-lg bg-primary border-2 border-primary mr-2 px-5 py-1.5 md:px-8 md:py-1 rounded-md text-black">
+      <div className={ `bg-color-blue-500 pt-6 md:mr-6  ${location.pathname ==="/signup"? "invisible" : ""} `}>
+        <Link to={"/login"} className=" text-sm md:text-lg bg-primary border-2 border-primary mr-2 px-5 py-1.5 md:px-8 md:py-1 rounded-md text-black">
           Login
-        </button>
-        <button
+        </Link>
+        <Link 
+          to={"/signup"}
           className={`${getMainTextColor().bgColor} text-sm md:text-lg px-3  py-1.5 md:px-6 md:py-1 rounded-md border-2 ${location ==="/"? "border-white" :"border-gray-200"}`}
         >
           Sign up
-        </button>
+        </Link>
       </div>
     </header>
   );
