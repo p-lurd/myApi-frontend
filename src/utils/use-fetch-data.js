@@ -28,18 +28,19 @@ function useFetchData(endpoint) {
           throw new Error(data.message || `Error: ${response.status}`);
         }
 
-        const result = await response.json();
+        const data = await response.json();
+        if(!data) throw new Error('No data found');
         
-        setGroupedData(result);
-      } catch (err) {
+        setGroupedData(data);
+      } catch (error) {
         if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
           toast.error("Cannot connect to server. Please check your internet connection.");
         } else {
           // Handle other errors
           toast.error(error.message || "An unknown error occurred");
         }
-        console.error("Signup error:", error);
-        setError(err.message);
+        // console.error("Signup error:", error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }

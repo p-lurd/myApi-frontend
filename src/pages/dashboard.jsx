@@ -275,7 +275,7 @@ const Dashboard = () => {
             </div>
           )}
         </div>
-
+          {/* Here for the footer */}
         <div className="mt-6 grid grid-cols-3 gap-4">
           <div className="bg-gray-800 p-4 rounded-lg">
             <h3 className="text-lg font-medium mb-2">Status Summary</h3>

@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import Signup from "./pages/signup";
 import Login from "./pages/login";
 import Dashboard from "./pages/dashboard";
+import ApiUptimeMonitor from "./pages/test";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/test" element={<ApiUptimeMonitor />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
