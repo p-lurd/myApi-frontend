@@ -1,15 +1,12 @@
 import { useState } from "react";
 import github from "../assets/github.svg";
 import { toast } from "react-toastify";
-import {Link} from "react-router-dom"
 
-const SignupForm = () => {
+const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -20,10 +17,7 @@ const SignupForm = () => {
     });
   };
   const validateForm = () => {
-    if (formData.password !== formData.confirmPassword) {
-      toast.error("Passwords do not match");
-      return false;
-    } else if (formData.password.length < 8) {
+    if (formData.password.length < 8) {
       toast.error("Password must be at least 8 characters");
       return false;
     } else if (!formData.email) {
@@ -45,13 +39,12 @@ const SignupForm = () => {
       setIsLoading(true);
 
       const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await fetch(`${apiUrl}/auth/register`, {
+      const response = await fetch(`${apiUrl}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: formData.username,
           email: formData.email,
           password: formData.password,
         }),
@@ -90,24 +83,9 @@ const SignupForm = () => {
   };
   return (
     <div className="flex items-center justify-center w-full h-10/12 lg:pr-15">
-      <div className="bg-grayA py-8 px-10 rounded-lg lg:min-w-3/12 shadow-xl/20 shadow-gray-600 inset-shadow-sm inset-shadow-gray-200/10">
-        <h1 className="mb-8 font-semibold b">Register</h1>
+      <div className="bg-grayA p-10 rounded-lg lg:min-w-3/12 shadow-xl/20 shadow-gray-600 inset-shadow-sm inset-shadow-gray-200/10">
+        <h1 className="mb-8 font-semibold b">Login</h1>
         <form className="mb-5">
-          <div className="pb-1.5">
-            <label htmlFor="username" className="text-xs">
-              Username
-            </label>
-            <input
-              id="username"
-              type="text"
-              name="username"
-              value={formData.username}
-              placeholder="John Doe"
-              autoComplete="username"
-              onChange={handleChange}
-              className="w-full border-light border-1 rounded-md mt-1 pl-2 py-1.5 hover:cursor-pointer hover:border-gray-100  transition duration-200"
-            />
-          </div>
           <div className="pb-1.5">
             <label htmlFor="email" className="text-xs">
               Email
@@ -124,7 +102,7 @@ const SignupForm = () => {
             />
           </div>
 
-          <div className="">
+          <div className="mb-7">
             <label htmlFor="password" className="text-xs">
               Password
             </label>
@@ -134,21 +112,6 @@ const SignupForm = () => {
               name="password"
               placeholder="••••••••"
               value={formData.password}
-              autoComplete="new-password"
-              onChange={handleChange}
-              className="w-full border-light border-1 rounded-md mt-1 pl-2 py-1.5 hover:cursor-pointer hover:border-gray-100  transition duration-200"
-            />
-          </div>
-          <div className="mb-7">
-            <label htmlFor="confirmPassword" className="text-xs">
-              Confirm Password
-            </label>
-            <input
-              id="confirmPassword"
-              type="password"
-              name="confirmPassword"
-              placeholder="••••••••"
-              value={formData.confirmPassword}
               autoComplete="new-password"
               onChange={handleChange}
               className="w-full border-light border-1 rounded-md mt-1 pl-2 py-1.5 hover:cursor-pointer hover:border-gray-100  transition duration-200"
@@ -175,7 +138,6 @@ const SignupForm = () => {
             <span className="px-2 bg-grayA text-gray-500">Or</span>
           </div>
         </div>
-        <p className="text-start font-light text-xs mb-1">An organization?</p>
         <button
           type="submit"
           onClick={handleGithubLogin}
@@ -191,9 +153,8 @@ const SignupForm = () => {
           )}
           <span>{isLoading ? "Connecting..." : "Continue with GitHub"}</span>
         </button>
-        <Link to={'/login'} className="text-xs font-extralight text-center flex justify-center mt-3 hover:text-blue-400">already a user?</Link>
       </div>
     </div>
   );
 };
-export default SignupForm;
+export default LoginForm;

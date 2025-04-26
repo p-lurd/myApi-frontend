@@ -3,11 +3,11 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();
-  console.log({location})
   const navigate = useNavigate();
+  const supportEmail = import.meta.env.VITE_SUPPORT_EMAIL;
 
   const getMainTextColor = () => {
-    if (location.pathname === "/" || location.pathname === "/signup") {
+    if (location.pathname === "/" || location.pathname === "/signup" || location.pathname === "/login") {
       return { text: "text-white", bgColor: "" };
     } else {
       return { text: "text-black", bgColor: "bg-gray-200" };
@@ -35,10 +35,10 @@ const Header = () => {
           <Link to={"#"}>Monitoring</Link>
           <Link to={"#"}>Features</Link>
           <Link to={"#"}>Pricing</Link>
-          <Link to={"#"}>Get Help</Link>
+          <Link to={`mailto:${supportEmail}`}>Get Help</Link>
         </div>
       </nav>
-      <div className={ `bg-color-blue-500 pt-6 md:mr-6  ${location.pathname ==="/signup"? "invisible" : ""} `}>
+      <div className={ `bg-color-blue-500 pt-6 md:mr-6  ${location.pathname ==="/signup"|| location.pathname ==="/login"? "invisible" : ""} `}>
         <Link to={"/login"} className=" text-sm md:text-lg bg-primary border-2 border-primary mr-2 px-5 py-1.5 md:px-8 md:py-1 rounded-md text-black">
           Login
         </Link>

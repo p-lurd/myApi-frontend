@@ -23,15 +23,22 @@ function useFetchData(endpoint) {
         });
 
         if (!response.ok) {
-          toast.error("There is a server error, please reload")
-          throw new Error(`Error: ${response.status}`);
+          // toast.error("Invalid login credientials");
+          // throw new Error(`Error: ${response.status}`); 
+          throw new Error(data.message || `Error: ${response.status}`);
         }
 
         const result = await response.json();
         
         setGroupedData(result);
       } catch (err) {
-        toast.error(err.message)
+        if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+          toast.error("Cannot connect to server. Please check your internet connection.");
+        } else {
+          // Handle other errors
+          toast.error(error.message || "An unknown error occurred");
+        }
+        console.error("Signup error:", error);
         setError(err.message);
       } finally {
         setLoading(false);
