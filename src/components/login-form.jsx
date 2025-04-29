@@ -1,6 +1,8 @@
 import { useState } from "react";
 import github from "../assets/github.svg";
 import { toast } from "react-toastify";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -8,6 +10,8 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
+  const {user, setuser, login} = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,35 +34,24 @@ const LoginForm = () => {
       return true;
     }
   };
-  const handleEmailSignUp = async (e) => {
+  const handleEmailLogin = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
       return;
     }
     try {
       setIsLoading(true);
-
-      const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await fetch(`${apiUrl}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-        credentials: "include",
-      });
-      const data = await response.json();
-      console.log({ response }, response.status);
-      if (!response.ok) {
-        // toast.error("Invalid login credientials");
-        // throw new Error(`Error: ${response.status}`); 
-        throw new Error(data.message || `Error: ${response.status}`);
-      }
-      toast.success("Registration successful!");
-      window.location.href = "/dashboard";
+        const credential ={
+            email: formData.email,
+            password: formData.password
+        }
+        const res = await login(credential);
+        if(!res.success){
+            toast.error(res.error);
+            return
+        }
+      toast.success("Login successful!");
+      navigate("/settings");
     } catch (error) {
       if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
         toast.error("Cannot connect to server. Please check your internet connection.");
@@ -119,7 +112,7 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            onClick={handleEmailSignUp}
+            onClick={handleEmailLogin}
           disabled={isLoading}
             className="bg-primary text-black py-1.5 mt-3 w-full rounded-lg hover:bg-blue-300 hover:cursor-pointer transition duration-200"
           >

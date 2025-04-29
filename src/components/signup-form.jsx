@@ -1,7 +1,7 @@
 import { useState } from "react";
 import github from "../assets/github.svg";
 import { toast } from "react-toastify";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 const SignupForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,6 +11,7 @@ const SignupForm = () => {
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,21 +52,20 @@ const SignupForm = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: formData.username,
+          name: formData.username,
           email: formData.email,
           password: formData.password,
         }),
         credentials: "include",
       });
       const data = await response.json();
-      console.log({ response }, response.status);
-      if (!response.ok) {
-        // toast.error("Invalid login credientials");
-        // throw new Error(`Error: ${response.status}`); 
-        throw new Error(data.message || `Error: ${response.status}`);
+      // console.log({ response }, response.status);
+      if (!response.ok) { 
+        throw new Error(data.message || `Something went wrong: ${response.status}`);
       }
+      // console.log({data})
       toast.success("Registration successful!");
-      window.location.href = "/dashboard";
+      navigate("/settings");
     } catch (error) {
       if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
         toast.error("Cannot connect to server. Please check your internet connection.");
@@ -73,7 +73,7 @@ const SignupForm = () => {
         // Handle other errors
         toast.error(error.message || "An unknown error occurred");
       }
-      console.error("Signup error:", error);
+      // console.error("Signup error:", error);
     }finally {
       setIsLoading(false);
     }

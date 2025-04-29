@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function useFetchData(endpoint) {
@@ -10,7 +11,7 @@ function useFetchData(endpoint) {
     const fetchData = async () => {
       try {
         const apiUrl = import.meta.env.VITE_API_URL;
-        const fetchUrl = `${apiUrl}/api/${endpoint}`;
+        const fetchUrl = `${apiUrl}/api/all/${endpoint}`;
         const response = await fetch(fetchUrl, {
           method: "GET",
           headers: {
@@ -20,15 +21,16 @@ function useFetchData(endpoint) {
             Pragma: "no-cache",
             Expires: "0",
           },
+          credentials: "include",
         });
-
+        const data = await response.json();
         if (!response.ok) {
           // toast.error("Invalid login credientials");
           // throw new Error(`Error: ${response.status}`); 
           throw new Error(data.message || `Error: ${response.status}`);
         }
 
-        const data = await response.json();
+        
         if(!data) throw new Error('No data found');
         
         setGroupedData(data);
