@@ -2,7 +2,7 @@ import { useState } from "react";
 import github from "../assets/github.svg";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -146,6 +146,7 @@ const LoginForm = () => {
           )}
           <span>{isLoading ? "Connecting..." : "Continue with GitHub"}</span>
         </button>
+        <Link to={'/signup'} className="text-xs font-extralight text-center flex justify-center mt-3 hover:text-blue-400">not a user?</Link>
       </div>
     </div>
   );
