@@ -3,20 +3,14 @@ import { useEffect, useState } from "react";
 
 const StatusBoxes = ({ group }) => {
   const [data, setData] = useState([]);
-  console.log("Received group prop:", group);
   useEffect(() => {
     if (group && Array.isArray(group)&& group.length > 0) {
-        console.log("Setting data with:", group);
       setData(group);
     } else {
         console.log("Group is invalid:", group);
       }
   }, [group]);
 
-  useEffect(() => {
-    console.log(data)
-
-  }, [data, group]);
   const TOTAL_BOXES = 30;
   // Build a fixed-size array (30), with nulls first followed by responses
 const statusBoxes = Array.from({ length: TOTAL_BOXES }).map((_, i) => {
