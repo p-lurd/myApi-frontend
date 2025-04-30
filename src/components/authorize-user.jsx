@@ -63,7 +63,7 @@ export default function AuthorizedUserForm() {
       <div className="mb-5">
           <label className="mb-2 font-light text-md">Role:</label>
           <div className="flex gap-4 mt-2">
-            {["superadmin", "admin", "support"].map((option) => (
+            {["superadmin", "admin"].map((option) => (
               <div key={option} className="flex items-center">
                 <input
                   type="radio"
