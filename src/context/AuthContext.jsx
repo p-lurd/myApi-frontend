@@ -1,5 +1,7 @@
 // src/context/AuthContext.js
 import { createContext, useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext(null);
 
@@ -50,9 +52,18 @@ export const AuthProvider = ({ children }) => {
           setUser(userData);
           // Fetch businesses for this user
           fetchBusinesses(userData)
+          return
         }
+        setUser(null);
+        setBusinesses([]);
+        setSelectedBusiness(null);
+        // if(location.pathname !== '/login' || location.pathname !== '/signup' || location.pathname !== '/' || location.pathname !== '/status') {
+        //   window.location.href = '/login';
+        //   throw new Error('please login first')
+        // }
       } catch (error) {
-        console.error("Authentication check failed:", error);
+        toast.error(error.message);
+        // console.error("Authentication check failed:", error);
       } finally {
         setLoading(false);
       }

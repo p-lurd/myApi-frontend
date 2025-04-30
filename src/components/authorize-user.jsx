@@ -60,19 +60,7 @@ export default function AuthorizedUserForm() {
       <h1 className="font-semibold text-xl mb-3">Add an authorized user</h1>
       
       <div>
-        <div className="mb-4">
-          <label htmlFor="email" className="mb-2 font-light text-md">Email:</label>
-          <input 
-            type="text" 
-            id="email" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="border-2 border-gray-600 rounded-2xl pl-2 p-1 w-full" 
-            disabled={isSubmitting}
-          />
-        </div>
-        
-        <div className="mb-5">
+      <div className="mb-5">
           <label className="mb-2 font-light text-md">Role:</label>
           <div className="flex gap-4 mt-2">
             {["superadmin", "admin", "support"].map((option) => (
@@ -94,6 +82,19 @@ export default function AuthorizedUserForm() {
             ))}
           </div>
         </div>
+        <div className="mb-4">
+          <label htmlFor="email" className="mb-2 font-light text-md">Email:</label>
+          <input 
+            type="text" 
+            id="email" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="border-2 border-gray-600 rounded-2xl pl-2 p-1 w-full" 
+            disabled={isSubmitting}
+          />
+        </div>
+        
+        
         
         <div className="flex justify-end">
         <button 

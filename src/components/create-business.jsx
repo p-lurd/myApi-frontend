@@ -86,10 +86,10 @@ const CreateBusiness = () => {
         <h1 className="mb-3 text-2xl font-semibold">Create Business</h1>
       <label htmlFor="businessName" className="mb-3 text-xl">Business Name:</label>
         {/* <textarea class="resize-none rounded-md border-3 border-grayA" id="businessName"></textarea> */}
-        <input type="text" id="businessName" name="businessName" value={formData} onChange={handleChange} className="border-2 border-l-blue-300 h-12 rounded-3xl pl-5"/>
+        <input type="text" id="businessName" name="businessName" value={formData} onChange={handleChange} className="border-2 border-gray-600 h-10 rounded-3xl pl-5"/>
         <div className="flex flex-row justify-end">
         <button 
-        className=" bg-final border-2 border-final mr-2 px-5 py-3 rounded-2xl text-primary font-medium mt-5 hover:cursor-pointer hover:bg-gray-900"
+        className=" bg-final border-2 border-final mr-2 px-5 py-2 rounded-2xl text-primary font-medium mt-5 hover:cursor-pointer hover:bg-gray-900"
         onClick={submitBusiness}
         >
             Create
