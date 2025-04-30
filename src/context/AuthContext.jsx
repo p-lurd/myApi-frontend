@@ -13,24 +13,33 @@ export const AuthProvider = ({ children }) => {
   const apiUrl = import.meta.env.VITE_API_URL
 
   const fetchBusinesses = async (userData) => {
-    const bizResponse = await fetch(`${apiUrl}/businesses/${userData._id}`,{
-      method: 'GET',
-      headers:{
-        "Content-Type": "applications/json",
-      "Cache-Control": "no-cache, no-store, must-revalidate",
-        Pragma: "no-cache",
-        Expires: "0",
-      },
-      credentials: 'include',
-    });
-    if (bizResponse.ok) {
+    try {
+      const bizResponse = await fetch(`${apiUrl}/businesses/${userData._id}`,{
+        method: 'GET',
+        headers:{
+          "Content-Type": "applications/json",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
+        },
+        credentials: 'include',
+      });
       const bizData = await bizResponse.json();
-      setBusinesses(bizData);
-      // If there are businesses, select the first one by default
-      if (bizData.length > 0) {
-        setSelectedBusiness(bizData[0]);
+      if (bizResponse.ok) {
+        
+        setBusinesses(bizData);
+        // If there are businesses, select the first one by default
+        if (bizData.length > 0) {
+          setSelectedBusiness(bizData[0]);
+        }
+        return
       }
+      throw new Error(bizData.message||`Failed to fetch businesses: ${bizResponse.status}`);
+    } catch (error) {
+      toast.error(error.message);
+      // console.error("Failed to fetch businesses:", error);
     }
+    
   }
   useEffect(() => {
     // Check if user is logged in when app loads
@@ -63,7 +72,7 @@ export const AuthProvider = ({ children }) => {
         // }
       } catch (error) {
         toast.error(error.message);
-        // console.error("Authentication check failed:", error);
+        console.error("Authentication check failed:", error);
       } finally {
         setLoading(false);
       }

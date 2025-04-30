@@ -29,7 +29,7 @@ function useFetchData(endpoint) {
           // throw new Error(`Error: ${response.status}`); 
           throw new Error(data.message || `Error: ${response.status}`);
         }
-
+        console.log({data})
         
         if(!data) throw new Error('No data found');
         
