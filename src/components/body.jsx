@@ -6,12 +6,18 @@ import useFetchData from "../utils/use-fetch-data";
 import StatusBoxes from "../components/status";
 import { getStatusInfo } from "../utils/status-info-gen";
 import {toast} from "react-toastify"
+import errorIcon from "../assets/error.svg";
 
 const Mainbody = () => {
   const [activeLink, setActiveLink] = useState("current");
   const [uptimeStatus, setUptimeStatus] = useState("");
   const today = formatCurrentDate();
   const { id } = useParams();
+  const [currentStatus, setCurrentStatus] = useState({
+          text: "No Data",
+          icon: <img src={errorIcon} alt="Error Icon" className="w-4.5 mr-1" />,
+          priority: 0
+        });
 
   const apiUrl = import.meta.env.VITE_API_URL;
   const { groupedData, loading, error } = useFetchData(id);
@@ -68,8 +74,8 @@ const Mainbody = () => {
                 <div className="flex flex-col px-3 py-6 bg-secondary rounded-lg">
                   <span className="font-medium">Current Status</span>
                   <span className="flex items-center font-medium text-sm">
-                    <img src={warning} alt="" className="w-4.5 mr-1" />
-                    Partial Outage
+                    {currentStatus.icon}
+                    {currentStatus.text}
                   </span>
                 </div>
               ) : (
@@ -101,12 +107,13 @@ const Mainbody = () => {
                     </span>
                   </div>
                 </div>
-                {/* {console.log(groupedData)} */}
                 {groupedData.map((group) => {
                   const lastResponse =
                     group.responses[group.responses.length - 1];
-                  const { text, icon } = getStatusInfo(lastResponse);
-
+                  const { text, icon, priority } = getStatusInfo(lastResponse);
+                  if(priority>currentStatus.priority){
+                    setCurrentStatus({text, icon, priority})
+                  }
                   return (
                     <div
                       key={group._id}

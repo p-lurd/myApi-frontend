@@ -22,12 +22,13 @@ const Content = () => {
         </span>
       </h3>
       <div className="flex flex-col md:flex-row justify-center w-full">
-      <a
-        href={`mailto:${supportEmail}`}
+      <Link
+        // href={`mailto:${supportEmail}`}
+        to={'/signup'}
         className="bg-primary mr-5 px-11 py-3 rounded-lg text-black font-semibold my-3 text-center w-full md:w-auto"
       >
         Get Started
-      </a>
+      </Link>
         <button onClick={handleRequestDemo} className=" px-11 py-3 my-3 rounded-lg font-semibold text-center w-full md:w-auto border-2 border-secondary">
           View Demo
         </button>
