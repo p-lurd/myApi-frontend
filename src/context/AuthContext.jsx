@@ -56,8 +56,9 @@ export const AuthProvider = ({ children }) => {
           },
           credentials: 'include',
         });
+        const userData = await response.json();
         if (response.ok) {
-          const userData = await response.json();
+        
           setUser(userData);
           // Fetch businesses for this user
           fetchBusinesses(userData)

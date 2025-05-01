@@ -47,6 +47,7 @@ const CreateBusiness = () => {
         })
         const businessResponse = await response.json();
         if(!response.ok){
+            toast.dismiss(toastId);
             toast.error(`Failed to create business: ${businessResponse.message}`);
             return;
         }else{
@@ -67,6 +68,7 @@ const CreateBusiness = () => {
             })
             const UBresponse = await res.json();
             if(!response.ok){
+                toast.dismiss(toastId);
                 toast.error(`Failed to create business: ${UBresponse.message}`);
                 return;
             }
