@@ -51,28 +51,30 @@ const CreateBusiness = () => {
             toast.error(`Failed to create business: ${businessResponse.message}`);
             return;
         }else{
-            const fetchData = {
-                name: formData,
-                businessId: businessResponse._id,
-                email,
-                role: "superadmin",
-            }
-            console.log({fetchData})
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/businesses/worker`,{
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(fetchData),
-                credentials: "include",
-            })
-            const UBresponse = await res.json();
-            if(!response.ok){
-                toast.dismiss(toastId);
-                toast.error(`Failed to create business: ${UBresponse.message}`);
-                return;
-            }
-            setSelectedBusiness(businessResponse)
+            // Logic already implemented on the backend
+
+            // const fetchData = {
+            //     name: formData,
+            //     businessId: businessResponse._id,
+            //     email,
+            //     role: "superadmin",
+            // }
+            // console.log({fetchData})
+            // const res = await fetch(`${import.meta.env.VITE_API_URL}/businesses/worker`,{
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify(fetchData),
+            //     credentials: "include",
+            // })
+            // const UBresponse = await res.json();
+            // if(!response.ok){
+            //     toast.dismiss(toastId);
+            //     toast.error(`Failed to create business: ${UBresponse.message}`);
+            //     return;
+            // }
+            // setSelectedBusiness(businessResponse)
         }
         toast.dismiss(toastId);
         toast.success("Business successfully created");
