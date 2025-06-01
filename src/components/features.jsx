@@ -2,10 +2,11 @@ import statitics_bar from "../assets/statistics_bars.svg"
 import statitics_graph from "../assets/statistics_graphs.svg"
 import on_phone from "../assets/on_phone.svg"
 import infographics from "../assets/infographics.svg"
+import {motion} from "motion/react"
 
 const FeatureCard = ({ title, description, icon }) => {
     return (
-      <div className="bg-quad rounded-lg overflow-hidden p-5">
+      <motion.div className="bg-quad rounded-lg overflow-hidden p-5" initial={{y:-100, scale:0.5}} whileInView={{y:0, scale:1, transition:{duration:1}}}>
         <div className="bg-gray-900 p-8 flex items-center justify-center h-38 md:h-48">
           <img src={icon} alt="" className="max-h-32 w-auto" />
         </div>
@@ -13,7 +14,7 @@ const FeatureCard = ({ title, description, icon }) => {
           <h3 className="text-white text-lg font-semibold mb-2">{title}</h3>
           <p className="text-gray-300">{description}</p>
         </div>
-      </div>
+      </motion.div>
     );
   };
 

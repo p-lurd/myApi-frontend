@@ -1,6 +1,7 @@
 import React from 'react';
 import ArrowRightIcon from "../assets/arrow.svg";
 import bg2Url from "../assets/bg2.svg"
+import {motion} from "motion/react"
 const Works = () => {
     const steps = [
         {
@@ -34,7 +35,7 @@ const Works = () => {
           <div className="flex flex-col md:flex-row justify-evenly items-center max-w-6xl mx-auto">
             {steps.map((step, index) => (
               <React.Fragment key={step.number}>
-                <div className="flex flex-col items-center mb-8 md:mb-0">
+                <motion.div className="flex flex-col items-center mb-8 md:mb-0" initial={{scale:0, x:100, rotateZ: 180}} whileInView={{scale:1, x:0,rotateZ:0 , transition: { duration: 1 }}} >
                   <div className="bg-white text-gray-900 w-22 h-22 md:w-30 md:h-30 rounded-full flex items-center justify-center md:text-3xl font-semibold mb-4">
                     {step.number}
                   </div>
@@ -44,7 +45,7 @@ const Works = () => {
                     <br />
                     {step.descriptionParts[1]}
                   </p>
-                </div>
+                </motion.div>
                 
                 {index < steps.length - 1 && (
                   <div className="hidden md:block transform rotate-0">

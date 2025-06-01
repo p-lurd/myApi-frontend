@@ -1,5 +1,7 @@
 import display from "../assets/display.svg"
 import { useNavigate, Link, useLocation, useParams } from "react-router-dom";
+import { motion } from "motion/react"
+import { SmoothWordWriter } from "./content-text";
 
 const Content = () => {
     const supportEmail = import.meta.env.VITE_SUPPORT_EMAIL;
@@ -10,7 +12,8 @@ const Content = () => {
   };
   return (
     <div className="content flex flex-col items-center mt-8 px-8 md:px-10">
-      <h1 className="font-light text-2xl md:text-5xl flex flex-col items-center mb-5">
+      <SmoothWordWriter></SmoothWordWriter>
+      {/* <h1 className="font-light text-2xl md:text-5xl flex flex-col items-center mb-5">
         Real-Time API Monitoring & <br /> <span>Uptime Tracking</span>{" "}
       </h1>
       <h3 className="font-extralight text-xs md:text-lg text-center mb-10">
@@ -20,7 +23,7 @@ const Content = () => {
           Get instant alerts, detailed logs, and historical insights to ensure
           your APIs stay reliable and performant.
         </span>
-      </h3>
+      </h3> */}
       <div className="flex flex-col md:flex-row justify-center w-full">
       <Link
         // href={`mailto:${supportEmail}`}
@@ -33,7 +36,14 @@ const Content = () => {
           View Demo
         </button>
       </div>
-      <img src={display} alt="" className="hidden md:flex"/>
+      <motion.img
+      initial={{ x:100, scale:0.2}}
+      whileInView={{
+        scale:1,
+        x:0,
+        transition: { duration: 1 }
+      }}
+       src={display} alt="" className="hidden md:flex"/>
     </div>
   );
 };
