@@ -14,7 +14,6 @@ env:
   CLOUD_RUN_REGION: ${{ secrets.CLOUD_RUN_REGION }}
   IMAGE_TAG: ${{ github.sha }}
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  PORT: ${{ secrets.PORT }}
 
 jobs:
 
@@ -56,7 +55,6 @@ jobs:
           # fail_on_empty: true
           VITE_API_URL: ${{ secrets.API_URL }}
           VITE_SUPPORT_EMAIL: ${{ secrets.SUPPORT_EMAIL }}
-          PORT: ${{ secrets.PORT }}
           file_name: .env
           
       - name: Build
