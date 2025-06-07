@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "serve -s dist -l 8080 -H 0.0.0.0"
+    "start": "serve -s dist -l 80 -H 0.0.0.0"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.2",
