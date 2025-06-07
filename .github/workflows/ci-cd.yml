@@ -80,3 +80,4 @@ jobs:
         run: |
           gcloud run deploy we-up --image $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:$IMAGE_TAG --project ${{ env.PROJECT_ID }} --platform managed --region $CLOUD_RUN_REGION --allow-unauthenticated
           
+          
