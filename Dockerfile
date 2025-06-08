@@ -15,4 +15,5 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+# CMD ["nginx", "-g", "daemon off;"]
+CMD ["serve", "-s", "dist", "-l", "8080", "-H", "0.0.0.0"]
