@@ -46,18 +46,18 @@ jobs:
       - name: Configure Docker
         run: |
           gcloud auth configure-docker $ARTIFACT_REGISTRY
-      - name: Load envs and save to .env file
-        uses: SpicyPizza/create-envfile@v1.3
-        with:
-          envkey_API_ROOT_PATH:  ${{ secrets.API_ROOT_PATH }}
-          # envkey_GOOGLE_CONFIG_BASE64:  ${{ secrets.GOOGLE_CONFIG_BASE64 }}
-          # envkey_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          # fail_on_empty: true
-          VITE_API_URL: ${{ secrets.API_URL }}
-          VITE_SUPPORT_EMAIL: ${{ secrets.SUPPORT_EMAIL }}
-          file_name: .env
+      # - name: Load envs and save to .env file
+      #   uses: SpicyPizza/create-envfile@v1.3
+      #   with:
+      #     envkey_API_ROOT_PATH:  ${{ secrets.API_ROOT_PATH }}
+      #     # envkey_GOOGLE_CONFIG_BASE64:  ${{ secrets.GOOGLE_CONFIG_BASE64 }}
+      #     # envkey_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      #     # fail_on_empty: true
+      #     VITE_API_URL: ${{ secrets.API_URL }}
+      #     VITE_SUPPORT_EMAIL: ${{ secrets.SUPPORT_EMAIL }}
+      #     file_name: .env
           
-      - name: Build
+      - name: Build Frontend Image
         # env:
         #   DOCKER_IMAGE_TAG: ${{ github.ref }}
         run: |
@@ -70,13 +70,13 @@ jobs:
       - name: Authenticating Artifact Repository
         run: |
           cat ${{ steps.write_file.outputs.filePath }} | docker login -u _json_key --password-stdin https://$ARTIFACT_REGISTRY
-      - name: Push
+      - name: Push Frontend
         # env:
         #   DOCKER_IMAGE_TAG: ${{ github.ref }}
         run: |
           docker push -a $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME
           # docker push $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:${DOCKER_IMAGE_TAG}
-      - name: Deploy To we-up Cloud Run Instance
+      - name: Deploy To we-up Frontend Cloud Run Instance
         run: |
-          gcloud run deploy we-up --image $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:$IMAGE_TAG --project ${{ env.PROJECT_ID }} --platform managed --region $CLOUD_RUN_REGION --allow-unauthenticated
+          gcloud run deploy we-up-api --image $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:$IMAGE_TAG --project ${{ env.PROJECT_ID }} --platform managed --region $CLOUD_RUN_REGION --allow-unauthenticated
           
