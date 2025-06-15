@@ -42,11 +42,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    console.log(`backend link: ${import.meta.env.VITE_API_URL}`)
     // Check if user is logged in when app loads
     const checkLoggedIn = async () => {
       try {
-        if(!document.cookie){return}
+        // if(!document.cookie){return}
         const response = await fetch(`${apiUrl}/auth/me`, {
           method: "GET",
           headers: {
