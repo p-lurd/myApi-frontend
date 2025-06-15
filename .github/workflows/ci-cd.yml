@@ -56,13 +56,23 @@ jobs:
       #     VITE_API_URL: ${{ secrets.API_URL }}
       #     VITE_SUPPORT_EMAIL: ${{ secrets.SUPPORT_EMAIL }}
       #     file_name: .env
-          
+       
       - name: Build Frontend Image
-        # env:
-        #   DOCKER_IMAGE_TAG: ${{ github.ref }}
         run: |
-          docker build -t $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:$IMAGE_TAG -t $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:latest .
-          # docker build -t $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:${DOCKER_IMAGE_TAG} .
+          docker build \
+            --build-arg VITE_API_URL=${{ secrets.VITE_API_URL }} \
+            --build-arg VITE_SUPPORT_EMAIL=${{ secrets.VITE_SUPPORT_EMAIL }} \
+            --build-arg VITE_FRONTEND_URL=${{ secrets.VITE_FRONTEND_URL }} \
+            -t $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:$IMAGE_TAG \
+            -t $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:latest \
+            .   
+          
+      # - name: Build Frontend Image
+      #   # env:
+      #   #   DOCKER_IMAGE_TAG: ${{ github.ref }}
+      #   run: |
+      #     docker build -t $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:$IMAGE_TAG -t $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:latest .
+      #     # docker build -t $ARTIFACT_REGISTRY/$PROJECT_ID/$ARTIFACT_REGISTRY_REPOSITORY/$IMAGE_NAME:${DOCKER_IMAGE_TAG} .
           
       - name: Output Docker Images
         run: |

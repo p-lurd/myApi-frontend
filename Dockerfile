@@ -8,29 +8,6 @@ RUN npm ci
 
 COPY . .
 
-# Add build arguments
-ARG VITE_API_URL
-ARG VITE_SUPPORT_EMAIL
-ARG VITE_FRONTEND_URL
-
-# Debug: Print the ARG values during build
-RUN echo "========== BUILD-TIME DEBUG =========="
-RUN echo "VITE_API_URL ARG: '$VITE_API_URL'"
-RUN echo "VITE_SUPPORT_EMAIL ARG: '$VITE_SUPPORT_EMAIL'"
-RUN echo "VITE_FRONTEND_URL ARG: '$VITE_FRONTEND_URL'"
-
-# Set environment variables
-ENV VITE_API_URL=$VITE_API_URL
-ENV VITE_SUPPORT_EMAIL=$VITE_SUPPORT_EMAIL
-ENV VITE_FRONTEND_URL=$VITE_FRONTEND_URL
-
-# Debug: Print the ENV values
-RUN echo "VITE_API_URL ENV: '$VITE_API_URL'"
-RUN echo "VITE_SUPPORT_EMAIL ENV: '$VITE_SUPPORT_EMAIL'"
-RUN echo "VITE_FRONTEND_URL ENV: '$VITE_FRONTEND_URL'"
-RUN echo "======================================"
-
-
 RUN npm run build
 
 FROM node:23.11-slim
