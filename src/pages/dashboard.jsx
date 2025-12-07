@@ -6,6 +6,7 @@ import { Navigate, Link } from 'react-router-dom';
 import useFetchDashboard from '../utils/fetch-api-dashboard';
 import weup from "../assets/we-up.svg";
 import { useAuth } from '../context/AuthContext';
+import AnalyticsCard from '../components/analytics';
 
 const Dashboard = () => {
   
@@ -202,7 +203,8 @@ const Dashboard = () => {
         </button>
           </div>
         </header>
-
+              {/* here contains the analytics */}
+              <AnalyticsCard data={'DFGHJ'} />
         <div className="bg-gray-800 rounded-lg overflow-hidden shadow-xl">
           <div className="overflow-x-auto">
             <table className="w-full">

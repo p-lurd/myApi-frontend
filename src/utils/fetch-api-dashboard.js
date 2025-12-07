@@ -59,7 +59,7 @@ const useFetchDashboard = (apiIdFilter, page, setPage) => {
     async (pageNum = page, resetData = false) => {
       setLoading(true);
       try {
-        const data = await fetchApiStatus(pageNum, 30, apiIdFilter);
+        const data = await fetchApiStatus(pageNum, 10, apiIdFilter);
         setApiData((prev) =>
           resetData || pageNum === 1 ? data : [...prev, ...data]
         );
